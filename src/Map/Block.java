@@ -5,7 +5,7 @@ public enum Block {
 
     private final String block;
 
-    Object(String block) {
+    Block(String block) {
         this.block = block;
     }
 }
