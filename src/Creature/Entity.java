@@ -3,6 +3,9 @@ package Creature;
 import GameMap.Direction;
 import GameMap.Position;
 
+/**
+ * Die Klasse repräsentiert die allgemeinen Stats eines Entitys.
+ */
 public class Entity {
     private int healthPoints = 0;
     private int speed = 0;
