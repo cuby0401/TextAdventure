@@ -3,16 +3,12 @@ package GameMap;
 import java.util.Map;
 import java.util.HashMap;
 
+/**
+ * Die Klasse repräsentiert die Map und die Richtungen in die man sich bewegen darf.
+ */
 public class GameMap {
     public final Map<Position, Map<Direction, Position>> gameMap = new HashMap<>();
-
     public GameMap() {
-        BlockFabric fabric = new BlockFabric();
-        Block blockWall = fabric.createBlock(BlockType.BLOCK,false);
-        Block blockAir = fabric.createBlock(BlockType.BLOCK,true);
-        Block powerUpBlock = fabric.createBlock(BlockType.POWERUP_BLOCK,true);
-        Block destination = fabric.createBlock(BlockType.BLOCK,true);
-
         gameMap.put(Position.B3, new HashMap<>());
         gameMap.get(Position.B3).put(Direction.UP, Position.B4);
         gameMap.get(Position.B3).put(Direction.RIGHT, Position.C3);

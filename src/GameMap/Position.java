@@ -1,5 +1,8 @@
 package GameMap;
 
+/**
+ * Die Klasse repräsentiert die Position auf die man sich bewegen kann.
+ */
 public enum Position {
     B3("B3"),
     B4("B4"),
@@ -13,7 +16,6 @@ public enum Position {
     D5("D5"),
     D6("D6"),
     ZIEL("Ziel");
-
 
     private String description = "";
 
