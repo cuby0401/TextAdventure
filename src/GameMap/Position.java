@@ -4,7 +4,9 @@ package GameMap;
  * Das Enum repräsentiert die Positionen auf denen man sich bewegen kann.
  */
 public enum Position {
-    B3("B3"),
+    B3("""
+            Du bist aus einer Höhle ins Wasser und tau
+            """),
     B4("B4"),
     B5("B5"),
     C3("C3"),

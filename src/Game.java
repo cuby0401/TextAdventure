@@ -2,20 +2,21 @@ import Creature.Entity;
 import GameMap.GameMap;
 import GameMap.Position;
 import GameMap.Direction;
-
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
  * Die Klasse repräsentiert das Spiel.
  */
 public class Game {
+    /**
+     * Die Methode ist eine Aufhübschung für die Main-Klasse.
+     */
     public static void playGame() {
         Position currentPositionCheep = Position.D4;
         Position currentPosition = Position.B3;
-        Entity mario = new Entity(1,currentPosition);
-        Entity cheepCheep = new Entity(1,currentPositionCheep);
+        Entity mario = new Entity(1);
+        Entity cheepCheep = new Entity(1);
         final GameMap gameMap = new GameMap();
         final Scanner scanner = new Scanner(System.in);
 
@@ -46,10 +47,14 @@ public class Game {
             } else if (input.equalsIgnoreCase("help")) {
                 System.out.println("""
                         Versuche es mit den Befehlen:
-                        W --> Du bewegst dich nach oben,\n
-                        A --> Du bewegst dich nach links,\n
-                        S --> Du bewegst dich nach unten,\n
-                        D --> Du bewegst dich nach rechts,\n
+                        W --> Du bewegst dich nach oben,
+                        
+                        A --> Du bewegst dich nach links,
+                        
+                        S --> Du bewegst dich nach unten,
+                        
+                        D --> Du bewegst dich nach rechts,
+                        
                         Exit --> Das Spiel wird beendet
                         """);
             } else if (move != Direction.RIGHT && move != Direction.LEFT && move != Direction.UP && move != Direction.DOWN) {
@@ -78,7 +83,14 @@ public class Game {
         }
         scanner.close();
     }
-    public static void powerUpHandling(Position currentPosition, Entity mario, Entity cheepCheep) {
+
+    /**
+     * Die Methode repräsentiert das Aufheben sowie nutzen der PowerUps.
+     * @param currentPosition Ist die aktuelle Position des Spielers.
+     * @param mario Übergibt die Stats von Mario
+     * @param cheepCheep Übergibt die Stas vom Cheep Cheep
+     */
+    private static void powerUpHandling(Position currentPosition, Entity mario, Entity cheepCheep) {
         if (currentPosition == Position.D6 && mario.getHealthPoints() == 1) {
             mario.setHealthPoints(2);
             System.out.println("Du hast ein PowerUp gefunden! Deine Lebenspunkte betragen jetzt zwei.");
@@ -88,10 +100,26 @@ public class Game {
             System.out.println("Du hast jetzt einen freien Weg");
         }
     }
-    public static void einfuehrung() {
+
+    /**
+     * Einführung in das Spiel.
+     */
+    private static void einfuehrung() {
         System.out.println("""
-                Herzlich Willkommen zu diesem kleinen Super Mario Bros Unterwasser Text Adventure!
-                Dieses Spiel 
+                Prinzessin Peach wurde erneut von Bowser entführt!
+                Doch dieses Mal hat er sie nicht in sein Schloss gebracht, sondern tief unter die Wellen des Pilz-Königreichs verschleppt.
+               
+                Als mutiger Mario stürzt du dich in die finsteren Tiefen des Ozeans, um Peach zu retten.
+                Doch Vorsicht! Die Unterwasserwelt steckt voller Gefahren.
+                Am Ende deines Weges wartet ein besonders aufdringliches Cheep Cheep, das den Ausgang bewacht – halte die Augen offen und sei auf der Hut!
+                
+                Zum Glück gibt es in den Tiefen einige Power-Ups, die dir helfen können.
+                Halte Ausschau nach ihnen, denn sie könnten dir den entscheidenden Vorteil bringen!
+                
+                Aber pass auf! Du hast nur eine begrenzte Anzahl an Zügen, bevor dir die Luft ausgeht.
+                Überlege deine Schritte gut und verschwende keine Zeit!
+                
+                Kannst du den Weg zu Peach finden und sie aus Bowsers nassen Klauen befreien?
                 """);
     }
 }
