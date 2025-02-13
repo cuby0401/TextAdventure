@@ -1,7 +1,7 @@
 package GameMap;
 
 /**
- * Die Klasse repräsentiert die Richtung in die man sich bewegen kann und mit welchen Tasten.
+ * Die Klasse repräsentiert die Richtung in die man sich bewegen kann.
  */
 public enum Direction {
     UP("oben"),
@@ -9,11 +9,19 @@ public enum Direction {
     LEFT("links"),
     RIGHT("rechts");
 
+    /**
+     * Fügt eine Beschreibung der Richtung hinzu.
+     */
     private String description = "";
     Direction(String description) {
         this.description = description;
     }
 
+    /**
+     * Die Klasse repräsentiert die Tasten zur Bewegung der Richtungen.
+     * @param input
+     * @return
+     */
     public static Direction fromString(String input) {
         return switch (input.toLowerCase()) {
             case "w" -> UP;
