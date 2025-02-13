@@ -3,7 +3,6 @@ import GameMap.GameMap;
 import GameMap.Position;
 import GameMap.Direction;
 import java.util.Map;
-import java.util.Scanner;
 
 /**
  * Die Klasse repräsentiert das Spiel.
@@ -18,19 +17,17 @@ public class Game {
         Entity mario = new Entity(1);
         Entity cheepCheep = new Entity(1);
         final GameMap gameMap = new GameMap();
-        final Scanner scanner = new Scanner(System.in);
 
         einfuehrung();
         System.out.println("Du befindest dich an: " + currentPosition);
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 30; i++) {
             System.out.println("Wähle eine Richtung (W: Hoch, S: Runter, A: Links, D: Rechts) oder 'exit' zum Beenden:");
 
             String input = UserInput.stringInput();
             Direction move = Direction.fromString(input);
             Map<Direction, Position> positionMap = gameMap.getGameMap().get(currentPosition);
 
-            //Hier muss noch ne richtige Funktion rein, dass nur J oder N verwendet werden kann
             if (input.equalsIgnoreCase("exit")) {
                 while (true) {
                     System.out.println("Spiel beendet. Möchtest du erneut spielen?");
@@ -46,7 +43,7 @@ public class Game {
                 }
             } else if (input.equalsIgnoreCase("help")) {
                 System.out.println("""
-                        Versuche es mit den Befehlen:
+                        Versuche es mit diesen Befehlen:
                         W --> Du bewegst dich nach oben,
                         
                         A --> Du bewegst dich nach links,
@@ -70,6 +67,7 @@ public class Game {
             } else {
                 System.out.println("Hier befindet sich ein Block, versuche eine andere Richtung!");
             }
+
             powerUpHandling(currentPosition,mario,cheepCheep);
             if (currentPosition == currentPositionCheep && cheepCheep.getHealthPoints() == 1) {
                 mario.setHealthPoints(mario.getHealthPoints() - 1);
@@ -81,14 +79,13 @@ public class Game {
                 }
             }
         }
-        scanner.close();
     }
 
     /**
      * Die Methode repräsentiert das Aufheben sowie nutzen der PowerUps.
      * @param currentPosition Ist die aktuelle Position des Spielers.
      * @param mario Übergibt die Stats von Mario
-     * @param cheepCheep Übergibt die Stas vom Cheep Cheep
+     * @param cheepCheep Übergibt die Stats vom Cheep Cheep
      */
     private static void powerUpHandling(Position currentPosition, Entity mario, Entity cheepCheep) {
         if (currentPosition == Position.D6 && mario.getHealthPoints() == 1) {
@@ -101,9 +98,6 @@ public class Game {
         }
     }
 
-    /**
-     * Einführung in das Spiel.
-     */
     private static void einfuehrung() {
         System.out.println("""
                 Prinzessin Peach wurde erneut von Bowser entführt!

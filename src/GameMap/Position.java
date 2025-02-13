@@ -1,7 +1,7 @@
 package GameMap;
 
 /**
- * Das Enum repräsentiert die Positionen auf denen man sich bewegen kann.
+ * Das Enum repräsentiert die Positionen, auf denen man sich bewegen kann.
  */
 public enum Position {
     B3("""
@@ -22,7 +22,8 @@ public enum Position {
     /**
      * Fügt eine Beschreibung der Positionen hinzu.
      */
-    private String description = "";
+    private final String description;
+
     Position(String description) {
         this.description = description;
     }
