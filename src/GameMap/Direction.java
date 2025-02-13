@@ -1,7 +1,7 @@
 package GameMap;
 
 /**
- * Das Enum repräsentiert die Richtung in die man sich bewegen kann.
+ * Das Enum repräsentiert die Richtung, in die man sich bewegen kann.
  */
 public enum Direction {
     UP("oben"),
@@ -12,7 +12,8 @@ public enum Direction {
     /**
      * Fügt eine Beschreibung der Richtung hinzu.
      */
-    private String description = "";
+    private final String description;
+
     Direction(String description) {
         this.description = description;
     }
@@ -20,7 +21,7 @@ public enum Direction {
     /**
      * Die Klasse repräsentiert die Tasten zur Bewegung der Richtungen.
      * @param input Übergibt die Eingabe des Users.
-     * @return Die Richtung in die sich bewegt wird.
+     * @return Die Richtung, in die sich bewegt wird.
      */
     public static Direction fromString(String input) {
         return switch (input.toLowerCase()) {
@@ -31,6 +32,7 @@ public enum Direction {
             default -> null;
         };
     }
+
     public String getDescription() {
         return description;
     }
