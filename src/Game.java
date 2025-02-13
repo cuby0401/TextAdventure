@@ -62,7 +62,7 @@ public class Game {
                     System.out.println("Herzlichen Glückwunsch, du hast Peach von Bowser befreit!");
                     break;
                 } else {
-                    System.out.println("Du bewegst dich nach " + move.getDescription() + " und befindest dich nun an: " + currentPosition.getDescription());
+                    System.out.println("Du bewegst dich nach " + move.getDescription() + " u" + currentPosition.getDescription());
                 }
             } else {
                 System.out.println("Hier befindet sich ein Block, versuche eine andere Richtung!");
