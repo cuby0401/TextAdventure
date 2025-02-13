@@ -1,6 +1,5 @@
 package Creature;
 
-import GameMap.Direction;
 import GameMap.Position;
 
 /**

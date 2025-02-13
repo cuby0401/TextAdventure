@@ -1,3 +1,4 @@
+import Creature.Entity;
 import GameMap.GameMap;
 import GameMap.Position;
 import GameMap.Direction;
@@ -10,11 +11,14 @@ import java.util.Scanner;
  */
 public class Game {
     public static void playGame() {
+        Position currentPositionCheep = Position.D4;
+        Position currentPosition = Position.B3;
+        Entity mario = new Entity(1,1,currentPosition);
+        Entity cheepCheep = new Entity(1,1,currentPositionCheep);
         final GameMap gameMap = new GameMap();
         final Scanner scanner = new Scanner(System.in);
 
-        Position currentPosition = Position.B3;
-        System.out.println("Du befindest dich an: " + currentPosition.getDescription());
+        System.out.println("Du befindest dich an: " + currentPosition);
 
         while (true) {
             System.out.println("Wähle eine Richtung (W: Hoch, S: Runter, A: Links, D: Rechts) oder 'exit' zum Beenden:");

@@ -18,7 +18,6 @@ public enum Position {
     ZIEL("Ziel");
 
     private String description = "";
-
     Position(String description) {
         this.description = description;
     }
