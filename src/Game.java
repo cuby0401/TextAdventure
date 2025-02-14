@@ -19,10 +19,10 @@ public class Game {
         final GameMap gameMap = new GameMap();
 
         einfuehrung();
-        System.out.println("Du befindest dich an: " + currentPosition);
+        System.out.println(currentPosition.getDescription());
 
         for (int i = 0; i < 30; i++) {
-            System.out.println("Wähle eine Richtung (W: Hoch, S: Runter, A: Links, D: Rechts) oder 'exit' zum Beenden:");
+            System.out.println("Wähle eine Richtung:");
 
             String input = UserInput.stringInput();
             Direction move = Direction.fromString(input);
@@ -62,7 +62,7 @@ public class Game {
                     System.out.println("Herzlichen Glückwunsch, du hast Peach von Bowser befreit!");
                     break;
                 } else {
-                    System.out.println("Du bewegst dich nach " + move.getDescription() + " u" + currentPosition.getDescription());
+                    System.out.println("Du bewegst dich nach " + move.getDescription() + " \n" + currentPosition.getDescription());
                 }
             } else {
                 System.out.println("Hier befindet sich ein Block, versuche eine andere Richtung!");

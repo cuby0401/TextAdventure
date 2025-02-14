@@ -1,7 +1,7 @@
 package Creature;
 
 /**
- * Die Klasse repräsentiert die allgemeinen Stats eines Entitys.
+ * Die Klasse repräsentiert die allgemeinen Stats eines Entity's.
  */
 public class Entity {
     private int healthPoints;
