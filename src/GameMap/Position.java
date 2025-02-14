@@ -17,7 +17,7 @@ public enum Position {
             vor dir und unter dir kannst du nichts erkennen, da das Wasser sehr trüb ist.
             """),
     C3("""
-            Du kannst nicht viel erkennen. Unter dir befindet sich ein Block.
+            Unter dir befindet sich ein Block.
             Rechts unten kannst du etwas ungewöhnliches sehen, jedoch kannst du es nicht richtig erkennen.
             Gehe näher ran um zu erkennen was es ist.
             """),

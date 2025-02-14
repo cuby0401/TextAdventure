@@ -8,7 +8,7 @@ public class Main {
         try {
             Game.playGame();
         } catch (NoSuchElementException e) {
-            System.out.println("Ungültige Eingabe! Falls du nicht weiter weißt, nutze 'help'");
+            System.out.println("Ungültige Eingabe! Das Programm wird nun geschlossen!");
         }
     }
 }
