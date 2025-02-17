@@ -1,4 +1,4 @@
-package GameMap;
+package game_map;
 
 /**
  * Das Enum repräsentiert die Positionen, auf denen man sich bewegen kann.

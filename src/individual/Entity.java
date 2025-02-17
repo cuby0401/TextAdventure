@@ -1,4 +1,4 @@
-package Creature;
+package individual;
 
 /**
  * Die Klasse repräsentiert die allgemeinen Stats eines Entity's.
