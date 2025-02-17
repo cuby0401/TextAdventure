@@ -1,7 +1,10 @@
-import individual.Entity;
+import game_individual.Entity;
 import game_map.GameMap;
 import game_map.Position;
 import game_map.Direction;
+import game_save.Loader;
+import game_save.Saver;
+
 import java.util.Map;
 
 /**
@@ -12,15 +15,17 @@ public class Game {
      * Die Methode ist zur Aufhübschung der Main-Klasse.
      */
     public static void playGame() {
-        Position currentPositionCheep = Position.D4;
-        Position currentPosition = Position.B3;
-        Entity mario = new Entity(1);
-        Entity cheepCheep = new Entity(1);
+        Entity mario = new Entity(1, Position.B3);
+        Entity cheepCheep = new Entity(1, Position.D4);
+        Position currentPositionCheep = cheepCheep.getPosition();
+        Position currentPosition = mario.getPosition();
+        Saver saver = new Saver();
+        Loader loader = new Loader();
+        loader.loadGame(cheepCheep,mario);
         final GameMap gameMap = new GameMap();
 
         einleitenderText();
         System.out.println(currentPosition.getDescription());
-
         final int MAX_MOVES = 30;
         for (int i = 0; i < MAX_MOVES; i++) {
             System.out.println("Wähle eine Richtung:");
@@ -32,10 +37,10 @@ public class Game {
             if (move != Direction.RIGHT && move != Direction.LEFT && move != Direction.UP && move != Direction.DOWN) {
                 switch (input) {
                     case "help":
-                        helpText(input);
+                        helpText();
                         break;
                     case "exit":
-                        exit(input,i);
+                        i = exit(i,saver);
                         break;
                     default:
                         System.out.println("Ungültige Eingabe! Falls du nicht weiter weißt, nutze 'help'");
@@ -45,6 +50,7 @@ public class Game {
                 currentPosition = positionMap.get(move);
                 if (currentPosition == Position.ZIEL) {
                     System.out.println("Herzlichen Glückwunsch, du hast Peach von Bowser befreit!");
+                    exit(i,saver);
                     break;
                 } else {
                     System.out.println("Du bewegst dich nach " + move.getDescription() + " \n" + currentPosition.getDescription());
@@ -63,6 +69,7 @@ public class Game {
                     break;
                 }
             }
+            saver.saveGame(cheepCheep,mario,i);
         }
     }
 
@@ -101,8 +108,7 @@ public class Game {
                 Kannst du den Weg zu Peach finden und sie aus Bowsers nassen Klauen befreien?
                 """);
     }
-    private static void helpText(String input) {
-        if (input.equalsIgnoreCase("help")) {
+    private static void helpText() {
             System.out.println("""
                         Versuche es mit diesen Befehlen:
                         W --> Du bewegst dich nach oben,
@@ -115,22 +121,20 @@ public class Game {
                         
                         Exit --> Das Spiel wird beendet
                         """);
-        }
     }
-    private static void exit(String input, int i) {
-        if (input.equalsIgnoreCase("exit")) {
-            while (true) {
-                System.out.println("Spiel beendet. Möchtest du erneut spielen?");
-                String inputRestart = UserInput.stringInput();
-                if (inputRestart.equalsIgnoreCase("n")) {
-                    i = 30;
-                    break;
-                } else if (inputRestart.equalsIgnoreCase("j")) {
-                    break;
-                } else {
-                    System.out.println("Du kannst nur J oder N verwenden.");
-                }
+    private static int exit(int i, Saver saver) {
+        while (true) {
+            System.out.println("Spiel beendet. Möchtest du erneut spielen?");
+            String inputRestart = UserInput.stringInput();
+            if (inputRestart.equalsIgnoreCase("n")) {
+                return 30;
+            } else if (inputRestart.equalsIgnoreCase("j")) {
+                saver.resetSaveFile();
+                break;
+            } else {
+                System.out.println("Du kannst nur J oder N verwenden.");
             }
         }
+        return i;
     }
 }
