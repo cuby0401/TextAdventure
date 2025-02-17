@@ -18,44 +18,29 @@ public class Game {
         Entity cheepCheep = new Entity(1);
         final GameMap gameMap = new GameMap();
 
-        einfuehrung();
+        einleitenderText();
         System.out.println(currentPosition.getDescription());
 
-        for (int i = 0; i < 30; i++) {
+        final int MAX_MOVES = 30;
+        for (int i = 0; i < MAX_MOVES; i++) {
             System.out.println("Wähle eine Richtung:");
 
             String input = UserInput.stringInput();
             Direction move = Direction.fromString(input);
             Map<Direction, Position> positionMap = gameMap.getGameMap().get(currentPosition);
 
-            if (input.equalsIgnoreCase("exit")) {
-                while (true) {
-                    System.out.println("Spiel beendet. Möchtest du erneut spielen?");
-                        String inputRestart = UserInput.stringInput();
-                        if (inputRestart.equalsIgnoreCase("n")) {
-                            i = 50;
-                            break;
-                        } else if (inputRestart.equalsIgnoreCase("j")) {
-                            break;
-                        } else {
-                            System.out.println("Du kannst nur J oder N verwenden.");
-                        }
+            if (move != Direction.RIGHT && move != Direction.LEFT && move != Direction.UP && move != Direction.DOWN) {
+                switch (input) {
+                    case "help":
+                        helpText(input);
+                        break;
+                    case "exit":
+                        exit(input,i);
+                        break;
+                    default:
+                        System.out.println("Ungültige Eingabe! Falls du nicht weiter weißt, nutze 'help'");
+                        break;
                 }
-            } else if (input.equalsIgnoreCase("help")) {
-                System.out.println("""
-                        Versuche es mit diesen Befehlen:
-                        W --> Du bewegst dich nach oben,
-                        
-                        A --> Du bewegst dich nach links,
-                        
-                        S --> Du bewegst dich nach unten,
-                        
-                        D --> Du bewegst dich nach rechts,
-                        
-                        Exit --> Das Spiel wird beendet
-                        """);
-            } else if (move != Direction.RIGHT && move != Direction.LEFT && move != Direction.UP && move != Direction.DOWN) {
-                System.out.println("Ungültige Eingabe! Falls du nicht weiter weißt, nutze 'help'");
             } else if (positionMap.containsKey(move)) {
                 currentPosition = positionMap.get(move);
                 if (currentPosition == Position.ZIEL) {
@@ -98,7 +83,7 @@ public class Game {
         }
     }
 
-    private static void einfuehrung() {
+    private static void einleitenderText() {
         System.out.println("""
                 Prinzessin Peach wurde erneut von Bowser entführt!
                 Doch dieses Mal hat er sie nicht in sein Schloss gebracht, sondern tief unter die Wellen des Pilz-Königreichs verschleppt.
@@ -115,5 +100,37 @@ public class Game {
                 
                 Kannst du den Weg zu Peach finden und sie aus Bowsers nassen Klauen befreien?
                 """);
+    }
+    private static void helpText(String input) {
+        if (input.equalsIgnoreCase("help")) {
+            System.out.println("""
+                        Versuche es mit diesen Befehlen:
+                        W --> Du bewegst dich nach oben,
+                        
+                        A --> Du bewegst dich nach links,
+                        
+                        S --> Du bewegst dich nach unten,
+                        
+                        D --> Du bewegst dich nach rechts,
+                        
+                        Exit --> Das Spiel wird beendet
+                        """);
+        }
+    }
+    private static void exit(String input, int i) {
+        if (input.equalsIgnoreCase("exit")) {
+            while (true) {
+                System.out.println("Spiel beendet. Möchtest du erneut spielen?");
+                String inputRestart = UserInput.stringInput();
+                if (inputRestart.equalsIgnoreCase("n")) {
+                    i = 30;
+                    break;
+                } else if (inputRestart.equalsIgnoreCase("j")) {
+                    break;
+                } else {
+                    System.out.println("Du kannst nur J oder N verwenden.");
+                }
+            }
+        }
     }
 }
