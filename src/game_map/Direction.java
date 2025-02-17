@@ -1,4 +1,4 @@
-package GameMap;
+package game_map;
 
 /**
  * Das Enum repräsentiert die Richtung, in die man sich bewegen kann.

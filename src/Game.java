@@ -1,7 +1,7 @@
-import Creature.Entity;
-import GameMap.GameMap;
-import GameMap.Position;
-import GameMap.Direction;
+import individual.Entity;
+import game_map.GameMap;
+import game_map.Position;
+import game_map.Direction;
 import java.util.Map;
 
 /**
@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class Game {
     /**
-     * Die Methode ist eine Aufhübschung für die Main-Klasse.
+     * Die Methode ist zur Aufhübschung der Main-Klasse.
      */
     public static void playGame() {
         Position currentPositionCheep = Position.D4;
