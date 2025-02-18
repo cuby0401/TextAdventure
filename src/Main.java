@@ -1,7 +1,7 @@
 import java.util.NoSuchElementException;
 
 /**
- *
+ *Die Klasse repräsentiert die Main.
  */
 public class Main {
     public static void main(String[] args) {

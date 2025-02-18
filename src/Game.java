@@ -1,7 +1,9 @@
 import game_individual.Entity;
+
 import game_map.GameMap;
 import game_map.Position;
 import game_map.Direction;
+
 import game_save.Loader;
 import game_save.Saver;
 
@@ -11,21 +13,21 @@ import java.util.Map;
  * Die Klasse repräsentiert das Spiel.
  */
 public class Game {
-    /**
-     * Die Methode ist zur Aufhübschung der Main-Klasse.
-     */
     public static void playGame() {
         Entity mario = new Entity(1, Position.B3);
         Entity cheepCheep = new Entity(1, Position.D4);
         Position currentPositionCheep = cheepCheep.getPosition();
         Position currentPosition = mario.getPosition();
-        Saver saver = new Saver();
-        Loader loader = new Loader();
-        loader.loadGame(cheepCheep,mario);
+        Position previousPosition = currentPosition;
+        //Saver saver = new Saver();
+        //Loader loader = new Loader();
+        //loader.loadGame(cheepCheep,mario);
         final GameMap gameMap = new GameMap();
 
+        gameMenu();
         einleitenderText();
         System.out.println(currentPosition.getDescription());
+
         final int MAX_MOVES = 30;
         for (int i = 0; i < MAX_MOVES; i++) {
             System.out.println("Wähle eine Richtung:");
@@ -40,7 +42,7 @@ public class Game {
                         helpText();
                         break;
                     case "exit":
-                        i = exit(i,saver);
+                        //i = exit(i,saver);
                         break;
                     default:
                         System.out.println("Ungültige Eingabe! Falls du nicht weiter weißt, nutze 'help'");
@@ -50,7 +52,7 @@ public class Game {
                 currentPosition = positionMap.get(move);
                 if (currentPosition == Position.ZIEL) {
                     System.out.println("Herzlichen Glückwunsch, du hast Peach von Bowser befreit!");
-                    exit(i,saver);
+                    //exit(i,saver);
                     break;
                 } else {
                     System.out.println("Du bewegst dich nach " + move.getDescription() + " \n" + currentPosition.getDescription());
@@ -62,6 +64,7 @@ public class Game {
             powerUpHandling(currentPosition,mario,cheepCheep);
             if (currentPosition == currentPositionCheep && cheepCheep.getHealthPoints() == 1) {
                 mario.setHealthPoints(mario.getHealthPoints() - 1);
+                currentPosition = previousPosition;
                 if (mario.getHealthPoints() == 1) {
                     System.out.println("Pass auf! Du bist dem Cheep Cheep zu nahe gekommen, es hat dich getroffen! Dir bleibt nur noch ein Leben");
                 } else {
@@ -69,13 +72,14 @@ public class Game {
                     break;
                 }
             }
-            saver.saveGame(cheepCheep,mario,i);
+            previousPosition = currentPosition;
+            //saver.saveGame(cheepCheep,mario,i);
         }
     }
 
     /**
      * Die Methode repräsentiert das Aufheben sowie nutzen der PowerUps.
-     * @param currentPosition Ist die aktuelle Position des Spielers.
+     * @param currentPosition Ist die aktuelle Position des Spielers
      * @param mario Übergibt die Stats von Mario
      * @param cheepCheep Übergibt die Stats vom Cheep Cheep
      */
@@ -90,6 +94,9 @@ public class Game {
         }
     }
 
+    /**
+     * Die Methode repräsentiert den Text, der zu Anfang angezeigt wird.
+     */
     private static void einleitenderText() {
         System.out.println("""
                 Prinzessin Peach wurde erneut von Bowser entführt!
@@ -108,6 +115,10 @@ public class Game {
                 Kannst du den Weg zu Peach finden und sie aus Bowsers nassen Klauen befreien?
                 """);
     }
+
+    /**
+     * Die Methode repräsentiert einen Hilfetext.
+     */
     private static void helpText() {
             System.out.println("""
                         Versuche es mit diesen Befehlen:
@@ -122,6 +133,41 @@ public class Game {
                         Exit --> Das Spiel wird beendet
                         """);
     }
+
+    /**
+     * Die Methode repräsentiert das Spiele menü, indem man seinen Spielstand verwalten kann.
+     */
+    private static void gameMenu() {
+        while (true) {
+            System.out.println("""
+                    1. Neues Spiel
+                    2. Spiel laden
+                    3. Exit
+                    """);
+            String input = UserInput.stringInput();
+            if (input.equalsIgnoreCase("1")) {
+                break;
+            } else if (input.equalsIgnoreCase("2")) {
+                //wenn kein Spielstand vorhanden ist, Ausgabe und erneut fragen
+                try {
+                    //loader.loadGame(cheepCheep,mario);
+                } catch (Exception e) {
+                    System.out.println("Es konnte kein Spiel geladen werden, da keiner vorhanden ist.");
+                    break;
+                }
+            } else if (input.equalsIgnoreCase("3")) {
+                    //exit(30,saver);
+            } else {
+                System.out.println("Du kannst nur 1, 2 oder 3 verwenden.");
+            }
+        }
+    }
+    /**
+     * Die Methode repräsentiert eine Möglichkeit zum Verlassen bzw Neustarten des spiels.
+     * @param i lässt das Spiel enden
+     * @param saver sichert den Spielstand
+     * @return i
+     */
     private static int exit(int i, Saver saver) {
         while (true) {
             System.out.println("Spiel beendet. Möchtest du erneut spielen?");

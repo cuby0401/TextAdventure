@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Saver {
-    private static final String DELIMITER = ":";
+    private static final String DELIMITER = ";";
     private final String gameSave = "src/game_save/cheepSave.txt";
 
     public void saveGame(Entity cheepCheep, Entity mario, int round) {

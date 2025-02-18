@@ -35,20 +35,20 @@ public enum Position {
             Gehe näher ran um zu erkennen was es ist.
             """),
     D2("""
-            Du hast ein PowerUp gefunden, dass das Cheep Cheep füttert.
+            Du hast ein PowerUp gefunden und verwendest es, um das Cheep Cheep zu füttern.
             Nördlich öffnet sich ein Block durch dass das Cheep Cheep wegschwimmt.
-            Du brauchst dich jetzt nicht mehr vor dem Cheep Cheep fürchten
+            Du brauchst dich jetzt nicht mehr vor dem Cheep Cheep fürchten.
             """),
     D3("""
             Rechts von dir befindet sich ein Block.
             Rechts über dir kannst du etwas pinkes sehen, jedoch nicht richtig erkennen.
             Ansonsten kannst du nicht viel sehen
             """),
-    D4("Direkt vor dir ist Peach mit Bowser, bewege dich auf die Druckplatte vor dir, mal schauen was passiert."),
-    D5("D5"),
+    D4("Von rechts hörst du Peach verzweifelt rufen!"),
+    D5("Rechts von dir befindet sich ein Block."),
     D6("""
-            Du hast ein PowerUp gefunden, dass dir mehr Leben gibt.
-            Dein Lebensanzahl beträgt nun zwei
+            Du hast ein PowerUp gefunden und verwendest es. Es gibt dir mehr Leben.
+            Dein Lebensanzahl beträgt nun zwei.
             """),
     ZIEL("Ziel");
 
