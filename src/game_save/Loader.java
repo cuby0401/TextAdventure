@@ -8,10 +8,19 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Die Klasse repräsentiert das Laden des Spiels.
+ */
 public class Loader {
-    private final String gameSave = "src/game_save/cheepSave.txt";
 
+    /**
+     * Die Methode lädt das alle übergebenen Sachen in das Spiel.
+     * @param cheepCheep übergibt CheepCheeps Position und die Lebenspunkte.
+     * @param mario übergibt Marios Position und die Lebenspunkte.
+     * @return die Rundenanzahl
+     */
     public int loadGame(Entity cheepCheep, Entity mario) {
+        String gameSave = "src/game_save/cheepSave.txt";
         try (BufferedReader reader = new BufferedReader(new FileReader(gameSave))) {
             String lineContent;
             if ((lineContent = reader.readLine()) != null) {
@@ -30,10 +39,9 @@ public class Loader {
                 return round;
             }
         } catch (FileNotFoundException e) {
-            gameSave.replace("cheepSave.txt", "cheepSave.sav");
-            System.out.println("Datei wurde nicht gefunden. Erstelle eine neue Datei mit dem Namen cheepSave.sav");
+            System.out.println("Datei wurde nicht gefunden.");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Datei konnte nicht geladen werden.");
         }
         return 0;
     }

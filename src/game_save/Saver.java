@@ -8,10 +8,19 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Die Klasse repräsentiert das sichern alle nötigen Parameter
+ */
 public class Saver {
     private static final String DELIMITER = ";";
     private final String gameSave = "src/game_save/cheepSave.txt";
 
+    /**
+     * Die Methode sichert das Spiel
+     * @param cheepCheep übergibt die Lebenspunkte und die Position
+     * @param mario übergibt die Lebenspunkte und die Position
+     * @param round übergibt die Rundenanzahl
+     */
     public void saveGame(Entity cheepCheep, Entity mario, int round) {
         int cheepHealth =  cheepCheep.getHealthPoints();
         Position marioPosition = mario.getPosition();
@@ -25,8 +34,11 @@ public class Saver {
             throw new RuntimeException(e);
         }
     }
-    public void resetSaveFile()
-    {
+
+    /**
+     * Die Methode löscht die aktuelle File
+     */
+    public void deleteSaveFile() {
         File file = new File(gameSave);
         file.delete();
     }
