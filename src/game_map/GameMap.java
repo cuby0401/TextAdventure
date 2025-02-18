@@ -59,10 +59,6 @@ public class GameMap {
 
         gameMap.put(Position.D6, new HashMap<>());
         gameMap.get(Position.D6).put(Direction.DOWN, Position.D5);
-
-        gameMap.put(Position.B3, new HashMap<>());
-        gameMap.get(Position.B3).put(Direction.RIGHT, Position.C3);
-        gameMap.get(Position.B3).put(Direction.UP, Position.B4);
     }
     public Map<Position, Map<Direction, Position>> getGameMap() {
         return gameMap;
