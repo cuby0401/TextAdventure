@@ -8,6 +8,10 @@ import java.util.HashMap;
  */
 public class GameMap {
     public final Map<Position, Map<Direction, Position>> gameMap = new HashMap<>();
+
+    /**
+     * Die Methode deklariert die einzelnen Felder mit den Richtungen in die man sich bewegen kann.
+     */
     public GameMap() {
         gameMap.put(Position.B3, new HashMap<>());
         gameMap.get(Position.B3).put(Direction.UP, Position.B4);
